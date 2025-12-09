@@ -2,8 +2,58 @@
  * ============================================
  * CERTIFIO - Dashboard Interactions
  * Mobile-first dashboard with animations
+ * Enhanced with user type differentiation
  * ============================================
  */
+
+// ============================================
+// User Profile Configurations
+// ============================================
+
+const USER_PROFILES = {
+  new: {
+    name: 'Alex',
+    displayName: 'Alex',
+    xp: 0,
+    level: 1,
+    streak: 0,
+    studyTime: 0,
+    achievementsUnlocked: 0,
+    totalAchievements: 24,
+    enrolledCourses: [],
+    completedLessons: 0,
+    xpToNextLevel: 0,
+    xpNextLevelTarget: 100,
+    leaderboardRank: null,
+    welcomeMessage: 'Welcome, Alex! 👋',
+    welcomeSubtitle: 'Ready to start your learning journey?',
+    showEmptyState: true,
+    showOnboarding: true,
+    streakDays: [false, false, false, false, false, false, false],
+    checklistProgress: [false, false, false, false]
+  },
+  returning: {
+    name: 'Alex',
+    displayName: 'Alex',
+    xp: 450,
+    level: 5,
+    streak: 7,
+    studyTime: 12.5,
+    achievementsUnlocked: 6,
+    totalAchievements: 24,
+    enrolledCourses: ['Oracle Java SE 21'],
+    completedLessons: 15,
+    xpToNextLevel: 50,
+    xpNextLevelTarget: 100,
+    leaderboardRank: 42,
+    welcomeMessage: 'Welcome back, Alex! 👋',
+    welcomeSubtitle: 'Let\'s continue where you left off',
+    showEmptyState: false,
+    showOnboarding: false,
+    streakDays: [true, true, true, true, true, true, true],
+    checklistProgress: [true, true, false, false]
+  }
+};
 
 // ============================================
 // Initialize on DOM load
@@ -14,6 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initializeDashboard() {
+  // Check authentication and load user profile
+  const userProfile = loadUserProfile();
+
+  // Apply user-specific data to dashboard
+  if (userProfile) {
+    applyUserProfile(userProfile);
+  }
+
   // Initialize all dashboard features
   initializeHeaderScroll();
   initializeDailyChallenge();
@@ -24,6 +82,244 @@ function initializeDashboard() {
   initializeNotifications();
   initializeStatsAnimation();
   initializeFadeInAnimations();
+  initializeLogout();
+}
+
+// ============================================
+// User Profile Management
+// ============================================
+
+function loadUserProfile() {
+  // Check if user is logged in
+  const isLoggedIn = sessionStorage.getItem('certifio_logged_in');
+  const userType = sessionStorage.getItem('certifio_user_type');
+
+  if (!isLoggedIn) {
+    console.log('🎨 MOCKUP MODE: User not logged in, using default new user profile');
+    return USER_PROFILES.new;
+  }
+
+  // Get user profile based on type
+  const profile = USER_PROFILES[userType] || USER_PROFILES.new;
+  console.log(`🎨 MOCKUP MODE: Loaded ${userType} user profile`);
+  console.log('Profile data:', profile);
+
+  return profile;
+}
+
+function applyUserProfile(profile) {
+  console.log('🎨 Applying user profile to dashboard...');
+
+  // Update welcome section
+  updateWelcomeSection(profile);
+
+  // Update stats
+  updateStats(profile);
+
+  // Update progress sections
+  updateProgressSections(profile);
+
+  // Update continue studying section
+  updateContinueStudying(profile);
+
+  // Update checklist
+  updateChecklist(profile);
+
+  console.log('✓ User profile applied successfully');
+}
+
+function updateWelcomeSection(profile) {
+  const welcomeTitle = document.querySelector('.welcome-title');
+  const welcomeSubtitle = document.querySelector('.welcome-subtitle');
+
+  if (welcomeTitle) {
+    welcomeTitle.textContent = profile.welcomeMessage;
+  }
+
+  if (welcomeSubtitle) {
+    welcomeSubtitle.textContent = profile.welcomeSubtitle;
+  }
+}
+
+function updateStats(profile) {
+  // Update stat cards
+  const statCards = document.querySelectorAll('.stat-card');
+
+  if (statCards[0]) {
+    const xpValue = statCards[0].querySelector('.stat-value');
+    if (xpValue) {
+      animateCountUp(xpValue, 0, profile.xp, 1000);
+    }
+  }
+
+  if (statCards[1]) {
+    const streakValue = statCards[1].querySelector('.stat-value');
+    if (streakValue) {
+      animateCountUp(streakValue, 0, profile.streak, 1000);
+    }
+  }
+
+  if (statCards[2]) {
+    const levelValue = statCards[2].querySelector('.stat-value');
+    if (levelValue) {
+      levelValue.textContent = profile.level;
+    }
+  }
+}
+
+function updateProgressSections(profile) {
+  // Update XP progress
+  const xpProgressValue = document.querySelector('.progress-card .progress-value');
+  const xpProgressBar = document.querySelector('.progress-card .progress-bar');
+  const xpProgressHint = document.querySelector('.progress-card .progress-hint');
+
+  if (xpProgressValue) {
+    xpProgressValue.textContent = `${profile.xpToNextLevel}/${profile.xpNextLevelTarget}`;
+  }
+
+  if (xpProgressBar) {
+    const percentage = (profile.xpToNextLevel / profile.xpNextLevelTarget) * 100;
+    xpProgressBar.dataset.target = percentage;
+  }
+
+  if (xpProgressHint) {
+    if (profile.xpToNextLevel > 0) {
+      xpProgressHint.textContent = `${profile.xpNextLevelTarget - profile.xpToNextLevel} XP to Level ${profile.level + 1}!`;
+    } else {
+      xpProgressHint.textContent = 'Start learning to earn XP!';
+    }
+  }
+
+  // Update streak days
+  const streakDaysValue = document.querySelector('.progress-card:nth-child(2) .progress-value');
+  if (streakDaysValue) {
+    streakDaysValue.textContent = `${profile.streak} days 🔥`;
+  }
+
+  const streakDayElements = document.querySelectorAll('.streak-day');
+  streakDayElements.forEach((day, index) => {
+    if (profile.streakDays[index]) {
+      day.classList.remove('empty');
+      day.classList.add('active');
+    } else {
+      day.classList.add('empty');
+      day.classList.remove('active');
+    }
+  });
+
+  const streakHint = document.querySelector('.progress-card:nth-child(2) .progress-hint');
+  if (streakHint) {
+    if (profile.streak > 0) {
+      streakHint.textContent = `Amazing! Keep your ${profile.streak}-day streak going!`;
+    } else {
+      streakHint.textContent = 'Come back daily to build streaks!';
+    }
+  }
+
+  // Update study time
+  const studyTimeValue = document.querySelector('.progress-card:nth-child(3) .progress-value');
+  if (studyTimeValue) {
+    studyTimeValue.textContent = `${profile.studyTime} hours`;
+  }
+}
+
+function updateContinueStudying(profile) {
+  const continueSection = document.querySelector('.empty-state-card');
+
+  if (!continueSection) return;
+
+  if (profile.showEmptyState) {
+    // Show empty state for new users
+    continueSection.style.display = 'block';
+  } else {
+    // For returning users, show in-progress content
+    const emptyStateIcon = continueSection.querySelector('.empty-state-icon');
+    const emptyStateTitle = continueSection.querySelector('.empty-state-title');
+    const emptyStateText = continueSection.querySelector('.empty-state-text');
+    const emptyStateArrow = continueSection.querySelector('.empty-state-arrow');
+
+    if (emptyStateIcon) emptyStateIcon.textContent = '📖';
+    if (emptyStateTitle) emptyStateTitle.textContent = 'Continue your journey';
+    if (emptyStateText) {
+      emptyStateText.textContent = `You've completed ${profile.completedLessons} lessons. Keep up the great work!`;
+    }
+    if (emptyStateArrow) emptyStateArrow.style.display = 'none';
+
+    continueSection.style.background = 'linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 160, 122, 0.1))';
+    continueSection.style.borderColor = 'rgba(255, 107, 107, 0.3)';
+  }
+}
+
+function updateChecklist(profile) {
+  const checkboxes = document.querySelectorAll('.checklist-checkbox');
+
+  checkboxes.forEach((checkbox, index) => {
+    if (profile.checklistProgress[index]) {
+      checkbox.checked = true;
+      const item = checkbox.closest('.checklist-item');
+      if (item) {
+        item.classList.remove('incomplete');
+        item.classList.add('complete');
+      }
+    }
+  });
+}
+
+function animateCountUp(element, start, end, duration) {
+  if (!element) return;
+
+  const startTime = performance.now();
+  const difference = end - start;
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+
+    const current = Math.floor(start + difference * easeOutQuad(progress));
+    element.textContent = current;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      element.textContent = end;
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+function easeOutQuad(t) {
+  return t * (2 - t);
+}
+
+// ============================================
+// Logout Functionality
+// ============================================
+
+function initializeLogout() {
+  // Add logout button click handler
+  const profileBtn = document.querySelector('.profile-btn');
+
+  if (profileBtn) {
+    profileBtn.addEventListener('click', () => {
+      const shouldLogout = confirm('Do you want to logout?');
+      if (shouldLogout) {
+        performLogout();
+      }
+    });
+  }
+}
+
+function performLogout() {
+  // Clear session data
+  sessionStorage.removeItem('certifio_logged_in');
+  sessionStorage.removeItem('certifio_user_type');
+  sessionStorage.removeItem('certifio_user_name');
+
+  console.log('🎨 MOCKUP MODE: User logged out');
+
+  // Redirect to login page
+  window.location.href = 'login.html';
 }
 
 // ============================================

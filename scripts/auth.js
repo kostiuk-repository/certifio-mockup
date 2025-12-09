@@ -46,7 +46,7 @@ passwordToggles.forEach(toggle => {
 });
 
 // ============================================
-// Form Submit Prevention (Mockup Only)
+// Form Submit with User Type Validation (Mockup Only)
 // ============================================
 
 const authForms = document.querySelectorAll('.auth-form');
@@ -54,6 +54,10 @@ const authForms = document.querySelectorAll('.auth-form');
 authForms.forEach(form => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    // Get form inputs
+    const emailInput = form.querySelector('input[type="email"]');
+    const emailValue = emailInput ? emailInput.value.toLowerCase().trim() : '';
 
     // Visual feedback only - no actual submission
     const submitBtn = form.querySelector('.auth-submit-btn');
@@ -64,21 +68,97 @@ authForms.forEach(form => {
     submitBtn.style.opacity = '0.7';
     submitBtn.style.cursor = 'not-allowed';
 
-    // Reset after 2 seconds and redirect to dashboard (mockup feedback)
+    // Check for specific usernames for mockup demo
     setTimeout(() => {
+      let userType = null;
+      let userName = '';
+
+      if (emailValue === 'newuser' || emailValue.startsWith('newuser@')) {
+        userType = 'new';
+        userName = 'Alex';
+        console.log('🎨 MOCKUP MODE: New user login detected');
+      } else if (emailValue === 'olduser' || emailValue.startsWith('olduser@')) {
+        userType = 'returning';
+        userName = 'Alex';
+        console.log('🎨 MOCKUP MODE: Returning user login detected');
+      } else {
+        // Show error for invalid username
+        submitBtn.querySelector('span').textContent = 'Invalid credentials';
+        submitBtn.style.background = 'linear-gradient(135deg, #f44336, #e91e63)';
+
+        setTimeout(() => {
+          submitBtn.querySelector('span').textContent = originalText;
+          submitBtn.style.opacity = '1';
+          submitBtn.style.cursor = 'pointer';
+          submitBtn.style.background = '';
+        }, 2000);
+
+        console.log('🎨 MOCKUP MODE: Please use "newuser" or "olduser" as email/username');
+        showLoginError('Please use "newuser" or "olduser" for demo purposes');
+        return;
+      }
+
+      // Store user data in sessionStorage
+      sessionStorage.setItem('certifio_user_type', userType);
+      sessionStorage.setItem('certifio_user_name', userName);
+      sessionStorage.setItem('certifio_logged_in', 'true');
+
+      // Reset button state
       submitBtn.querySelector('span').textContent = originalText;
       submitBtn.style.opacity = '1';
       submitBtn.style.cursor = 'pointer';
 
-      // Show a temporary message
-      console.log('🎨 MOCKUP MODE: Form submission disabled for demo purposes');
+      // Show success message
+      console.log(`🎨 User type: ${userType}`);
       console.log('🎨 Redirecting to dashboard...');
 
       // Redirect to dashboard (mockup flow)
       window.location.href = 'dashboard.html';
-    }, 2000);
+    }, 1500);
   });
 });
+
+// Show login error notification
+function showLoginError(message) {
+  const notification = document.createElement('div');
+  notification.className = 'login-error-notification';
+  notification.textContent = message;
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background: rgba(244, 67, 54, 0.95);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 8px 24px rgba(244, 67, 54, 0.4);
+    z-index: 10000;
+    backdrop-filter: blur(10px);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    max-width: 90%;
+    text-align: center;
+  `;
+
+  document.body.appendChild(notification);
+
+  // Animate in
+  setTimeout(() => {
+    notification.style.transform = 'translateX(-50%) translateY(0)';
+  }, 100);
+
+  // Remove after 3 seconds
+  setTimeout(() => {
+    notification.style.transform = 'translateX(-50%) translateY(-100px)';
+    setTimeout(() => {
+      if (notification.parentNode) {
+        document.body.removeChild(notification);
+      }
+    }, 400);
+  }, 3000);
+}
 
 // ============================================
 // OAuth Button Click Handlers (Visual Only)
