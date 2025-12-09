@@ -64,7 +64,7 @@ authForms.forEach(form => {
     submitBtn.style.opacity = '0.7';
     submitBtn.style.cursor = 'not-allowed';
 
-    // Reset after 2 seconds (mockup feedback)
+    // Reset after 2 seconds and redirect to dashboard (mockup feedback)
     setTimeout(() => {
       submitBtn.querySelector('span').textContent = originalText;
       submitBtn.style.opacity = '1';
@@ -72,6 +72,10 @@ authForms.forEach(form => {
 
       // Show a temporary message
       console.log('🎨 MOCKUP MODE: Form submission disabled for demo purposes');
+      console.log('🎨 Redirecting to dashboard...');
+
+      // Redirect to dashboard (mockup flow)
+      window.location.href = 'dashboard.html';
     }, 2000);
   });
 });
