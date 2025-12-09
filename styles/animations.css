@@ -1,0 +1,379 @@
+/* ============================================
+   CERTIFIO - Animation Styles
+   Smooth, elegant animations with Apple-inspired subtlety
+   ============================================ */
+
+/* ============================================
+   Keyframe Animations
+   ============================================ */
+
+/* Floating animation for glows and elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(-16px) translateX(8px);
+  }
+  66% {
+    transform: translateY(-8px) translateX(-8px);
+  }
+}
+
+/* Subtle pulse for CTA button glow */
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+}
+
+/* Shimmer effect for progress bars */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+/* Fade in from bottom */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in with scale */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Gentle rotation */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Glow pulse for notifications */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px var(--accent-primary-glow);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--accent-primary-glow);
+  }
+}
+
+/* Subtle scale bounce */
+@keyframes scaleBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Gradient shift animation */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ============================================
+   Intersection Observer Animations
+   ============================================ */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animation delay for child elements */
+.fade-in:nth-child(1) {
+  transition-delay: 0ms;
+}
+
+.fade-in:nth-child(2) {
+  transition-delay: 100ms;
+}
+
+.fade-in:nth-child(3) {
+  transition-delay: 200ms;
+}
+
+.fade-in:nth-child(4) {
+  transition-delay: 300ms;
+}
+
+.fade-in:nth-child(5) {
+  transition-delay: 400ms;
+}
+
+/* ============================================
+   Micro-interactions
+   ============================================ */
+
+/* Smooth hover lift */
+.hover-lift {
+  transition: transform var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Hover glow effect */
+.hover-glow {
+  position: relative;
+  transition: all var(--transition-base);
+}
+
+.hover-glow::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--accent-primary), #FFA07A);
+  opacity: 0;
+  z-index: -1;
+  filter: blur(12px);
+  transition: opacity var(--transition-base);
+}
+
+.hover-glow:hover::after {
+  opacity: 0.5;
+}
+
+/* Tap feedback for mobile */
+@media (hover: none) and (pointer: coarse) {
+  .cta:active {
+    transform: scale(0.98);
+  }
+
+  .join-btn:active {
+    transform: scale(0.95);
+  }
+
+  .glass-card:active {
+    transform: scale(0.98);
+  }
+}
+
+/* ============================================
+   Loading States
+   ============================================ */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--glass-bg) 0%,
+    var(--glass-bg-hover) 50%,
+    var(--glass-bg) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+/* Spinner */
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--glass-border);
+  border-top-color: var(--accent-primary);
+  border-radius: 50%;
+  animation: rotate 0.8s linear infinite;
+}
+
+/* ============================================
+   Page Transitions
+   ============================================ */
+
+/* Smooth scroll behavior */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .fade-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================
+   Background Animations
+   ============================================ */
+
+/* Apply floating animation to glow elements */
+.floating-glow {
+  animation: float 8s ease-in-out infinite;
+}
+
+/* CTA button pulse effect */
+.cta::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 50%);
+  animation: pulse 3s infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Notification dot pulse */
+.notification-dot {
+  animation: glowPulse 2s infinite;
+}
+
+/* ============================================
+   Focus Animations
+   ============================================ */
+
+*:focus-visible {
+  animation: scaleBounce 0.3s ease-out;
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* ============================================
+   Custom Easing Functions
+   ============================================ */
+
+:root {
+  /* Apple-inspired easing curves */
+  --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ============================================
+   Scroll-triggered Animations
+   ============================================ */
+
+/* Cards sliding in from left */
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s var(--ease-out-quad),
+              transform 0.8s var(--ease-out-quad);
+}
+
+.slide-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Cards sliding in from right */
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s var(--ease-out-quad),
+              transform 0.8s var(--ease-out-quad);
+}
+
+.slide-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============================================
+   Hover State Transitions
+   ============================================ */
+
+/* Smooth color transitions */
+.smooth-color {
+  transition: color var(--transition-base),
+              background-color var(--transition-base),
+              border-color var(--transition-base);
+}
+
+/* Transform transitions */
+.smooth-transform {
+  transition: transform var(--transition-base);
+  will-change: transform;
+}
+
+/* Combined smooth transitions */
+.smooth-all {
+  transition: all var(--transition-base);
+}
+
+/* ============================================
+   Performance Optimizations
+   ============================================ */
+
+/* GPU acceleration for animated elements */
+.gpu-accelerate {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Apply GPU acceleration to frequently animated elements */
+.cta,
+.glass-card,
+.feature-card,
+.path-card,
+.join-btn {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
