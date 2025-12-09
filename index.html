@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CERTIFIO - Level Up Your Career</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. VARIABLES & RESET (Based on screenshots) --- */
+        :root {
+            --bg-dark: #0B0B15; /* Дуже темний, майже чорний */
+            --bg-card: #1A1A2E; /* Трохи світліший для карток */
+            --accent-gradient: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%); /* Світлий градієнт */
+            --brand-gradient: linear-gradient(90deg, #FF6B6B 0%, #a18cd1 100%); /* Sunset style */
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #FFFFFF;
+            --text-secondary: #A0A0B0;
+            --radius-xl: 24px;
+            --radius-md: 16px;
+            --padding-page: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* --- 2. LAYOUT & UTILITIES --- */
+        .container {
+            max-width: 480px; /* Mobile app feel mostly */
+            margin: 0 auto;
+            padding: 0 var(--padding-page);
+            position: relative;
+        }
+
+        /* Desktop Adaptation */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 1000px;
+            }
+            .hero-content {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                align-items: center;
+            }
+        }
+
+        h1, h2, h3 { font-weight: 700; letter-spacing: -0.5px; }
+        
+        .text-gradient {
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-primary {
+            background: var(--brand-gradient);
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:active { transform: scale(0.98); }
+        .btn-primary:hover { box-shadow: 0 15px 30px rgba(255, 107, 107, 0.5); }
+
+        /* --- 3. HEADER --- */
+        header {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(11, 11, 21, 0.8);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo span { color: #FF6B6B; }
+
+        .login-btn {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        /* --- 4. HERO SECTION --- */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) { .hero { text-align: left; padding: 100px 0; } }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+        
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+
+        /* Mockup visual for Hero */
+        .hero-visual {
+            width: 100%;
+            height: 300px;
+            background: var(--glass-bg);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .glowing-orb {
+            width: 150px;
+            height: 150px;
+            background: var(--brand-gradient);
+            filter: blur(60px);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: pulse 4s infinite alternate;
+        }
+
+        /* --- 5. CARDS & GRID --- */
+        .section-title {
+            margin: 40px 0 20px;
+            font-size: 1.5rem;
+        }
+
+        .card-grid {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .card-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        }
+
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .card-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .progress-container {
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--brand-gradient);
+            width: 0%; /* JS will animate this */
+            border-radius: 3px;
+            transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* --- 6. GAMIFICATION FEATURES --- */
+        .gamification-row {
+            display: flex;
+            overflow-x: auto;
+            gap: 16px;
+            padding-bottom: 20px;
+            scrollbar-width: none; /* Hide scrollbar */
+        }
+        .gamification-row::-webkit-scrollbar { display: none; }
+
+        .feature-item {
+            min-width: 140px;
+            text-align: center;
+            padding: 20px;
+            background: #141422;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        /* --- 7. FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 60px 0 20px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        /* --- 8. ANIMATIONS --- */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo">log<span class="text-gradient">()</span></div>
+            <a href="#" class="login-btn">Увійти</a>
+        </header>
+    </div>
+
+    <div class="container hero">
+        <div class="hero-content">
+            <div class="fade-in">
+                <h1>Java 21.<br> <span class="text-gradient">Гейміфіковано.</span></h1>
+                <p>Підготуйся до сертифікації Java, AWS та Oracle, граючи. Прокачуй скіли, тримай стрік, отримуй офер.</p>
+                <button class="btn-primary" onclick="alert('Перехід до реєстрації...')">Почати безкоштовно</button>
+                
+                <div style="margin-top: 24px; display: flex; align-items: center; gap: 10px;">
+                    <div style="display: flex;">
+                        <div style="width:30px; height:30px; background:#555; border-radius:50%; border:2px solid var(--bg-dark);"></div>
+                        <div style="width:30px; height:30px; background:#777; border-radius:50%; border:2px solid var(--bg-dark); margin-left:-10px;"></div>
+                        <div style="width:30px; height:30px; background:#999; border-radius:50%; border:2px solid var(--bg-dark); margin-left:-10px;"></div>
+                    </div>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">438 студентів онлайн</span>
+                </div>
+            </div>
+
+            <div class="hero-visual fade-in">
+                <div class="glowing-orb"></div>
+                <div style="position: absolute; text-align: center; z-index: 2;">
+                    <div style="font-size: 3rem;">☕</div>
+                    <h3>Oracle Certified</h3>
+                    <p style="font-size: 0.8rem; opacity: 0.7;">Professional</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title fade-in">Як це працює</h2>
+        <div class="gamification-row fade-in">
+            <div class="feature-item">
+                <div class="feature-icon">🔥</div>
+                <h4>Daily Streaks</h4>
+                <p style="font-size:0.8rem; color:var(--text-secondary);">Вчись щодня</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🏆</div>
+                <h4>Leaderboard</h4>
+                <p style="font-size:0.8rem; color:var(--text-secondary);">Змагайся з іншими</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">💎</div>
+                <h4>XP Points</h4>
+                <p style="font-size:0.8rem; color:var(--text-secondary);">Відкривай контент</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🤖</div>
+                <h4>AI Mentor</h4>
+                <p style="font-size:0.8rem; color:var(--text-secondary);">Аналіз помилок</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title fade-in">Популярні шляхи</h2>
+        <div class="card-grid">
+            
+            <div class="card fade-in">
+                <span class="card-badge" style="background: rgba(255, 107, 107, 0.2); color: #FF6B6B;">Hot</span>
+                <h3 class="card-title">Java 21 Certification Path</h3>
+                <p class="card-desc">143 завдання • Beginner level</p>
+                <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div style="width: 100%;">
+                        <div style="font-size: 0.8rem; margin-bottom: 5px; color: var(--text-secondary);">Студентів: 1.2k</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 72%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card fade-in">
+                <span class="card-badge" style="color: #a18cd1; background: rgba(161, 140, 209, 0.2);">Security</span>
+                <h3 class="card-title">AWS Certified Security</h3>
+                <p class="card-desc">Specialty (SCS-C02)</p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 45%"></div>
+                </div>
+            </div>
+
+            <div class="card fade-in">
+                <span class="card-badge" style="color: #4facfe; background: rgba(79, 172, 254, 0.2);">Database</span>
+                <h3 class="card-title">Oracle Database 11g</h3>
+                <p class="card-desc">Program with PL/SQL</p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 20%"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <footer>
+            <p>© 2025 CERTIFIO. Всі права захищені.<br>Made by Java Developer for Developers.</p>
+        </footer>
+    </div>
+
+    <script>
+        // --- JS for Interactions & Animations ---
+
+        // 1. Intersection Observer for Fade-in animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // If it's a progress bar container, animate the bar inside
+                    if(entry.target.querySelector('.progress-bar')) {
+                        // Reset width to force animation or just let CSS handle it on load
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 2. Simple interactivity mimicking app state
+        // When page loads, animate progress bars
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.progress-bar').forEach(bar => {
+                    const targetWidth = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = targetWidth;
+                    }, 100);
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>
