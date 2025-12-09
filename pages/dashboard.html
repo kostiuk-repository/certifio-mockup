@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your CERTIFIO learning dashboard - Track progress, complete challenges, and master certifications">
+  <meta name="theme-color" content="#0B0B15">
+
+  <title>Dashboard - CERTIFIO</title>
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Google Fonts - Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/animations.css">
+  <link rel="stylesheet" href="../styles/dashboard.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎯</text></svg>">
+</head>
+
+<body class="dashboard-body">
+  <div class="dashboard-container">
+
+    <!-- Dashboard Header -->
+    <header class="dashboard-header" role="banner">
+      <a href="/pages/dashboard.html" class="logo" aria-label="CERTIFIO Dashboard">
+        <div class="logo-icon" aria-hidden="true">C</div>
+        <div class="logo-text">CERTIFIO</div>
+      </a>
+
+      <div class="header-actions">
+        <button class="icon-btn" aria-label="Search">
+          <span aria-hidden="true">🔍</span>
+        </button>
+        <button class="icon-btn notification-btn" aria-label="Notifications">
+          <span aria-hidden="true">🔔</span>
+          <span class="notification-dot"></span>
+        </button>
+        <button class="avatar" aria-label="Profile menu">A</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+
+      <!-- Welcome Section -->
+      <section class="welcome-section fade-in">
+        <div class="welcome-header">
+          <h1 class="welcome-title">Welcome, Alex! 👋</h1>
+          <p class="welcome-subtitle">Ready to start your learning journey?</p>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="stat-cards">
+          <div class="stat-card">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-value">0</div>
+            <div class="stat-label">XP</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🔥</div>
+            <div class="stat-value">0</div>
+            <div class="stat-label">Day Streak</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-value">1</div>
+            <div class="stat-label">Level</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Continue Studying Section (Empty State) -->
+      <section class="section-container fade-in">
+        <h2 class="section-title">
+          <span>Continue Studying</span>
+        </h2>
+
+        <div class="empty-state-card">
+          <div class="empty-state-icon">📚</div>
+          <h3 class="empty-state-title">Ready to start learning?</h3>
+          <p class="empty-state-text">Choose your first certification path below to begin your journey</p>
+          <div class="empty-state-arrow">↓</div>
+        </div>
+      </section>
+
+      <!-- AI Daily Challenge - MUST HAVE -->
+      <section class="section-container fade-in">
+        <h2 class="section-title">
+          <span class="ai-badge">🤖 AI Daily Challenge</span>
+          <span class="badge accent">+10 XP</span>
+        </h2>
+
+        <div class="daily-challenge-card glass-card">
+          <div class="challenge-header">
+            <div class="challenge-meta">
+              <span class="badge">Beginner</span>
+              <span class="challenge-topic">Java Basics</span>
+            </div>
+            <div class="challenge-reward">
+              <span class="xp-badge">+10 XP</span>
+            </div>
+          </div>
+
+          <div class="challenge-content">
+            <h3 class="challenge-question">What is the correct way to declare a variable in Java?</h3>
+
+            <div class="challenge-options">
+              <label class="option-item">
+                <input type="radio" name="daily-q" value="a">
+                <span class="option-text">
+                  <span class="option-letter">A</span>
+                  <span>var name = "John";</span>
+                </span>
+              </label>
+
+              <label class="option-item">
+                <input type="radio" name="daily-q" value="b">
+                <span class="option-text">
+                  <span class="option-letter">B</span>
+                  <span>String name = "John";</span>
+                </span>
+              </label>
+
+              <label class="option-item">
+                <input type="radio" name="daily-q" value="c">
+                <span class="option-text">
+                  <span class="option-letter">C</span>
+                  <span>name = "John";</span>
+                </span>
+              </label>
+
+              <label class="option-item">
+                <input type="radio" name="daily-q" value="d">
+                <span class="option-text">
+                  <span class="option-letter">D</span>
+                  <span>string name = "John";</span>
+                </span>
+              </label>
+            </div>
+
+            <button class="cta challenge-submit" disabled>
+              <span>Select an answer</span>
+            </button>
+          </div>
+
+          <div class="challenge-footer">
+            <span class="text-muted">📊 Personalized based on your level</span>
+            <span class="text-muted">🎯 Come back daily to build your streak!</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Progress Tracking -->
+      <section class="section-container fade-in">
+        <h2 class="section-title">Your Progress</h2>
+
+        <div class="progress-grid">
+          <div class="progress-card glass-card">
+            <div class="progress-header">
+              <span class="progress-label">XP to Next Level</span>
+              <span class="progress-value">0/100</span>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%" data-target="0"></div>
+            </div>
+            <p class="progress-hint">Start learning to earn XP!</p>
+          </div>
+
+          <div class="progress-card glass-card">
+            <div class="progress-header">
+              <span class="progress-label">Daily Streak</span>
+              <span class="progress-value">0 days 🔥</span>
+            </div>
+            <div class="streak-days">
+              <div class="streak-day empty" title="Day 1">M</div>
+              <div class="streak-day empty" title="Day 2">T</div>
+              <div class="streak-day empty" title="Day 3">W</div>
+              <div class="streak-day empty" title="Day 4">T</div>
+              <div class="streak-day empty" title="Day 5">F</div>
+              <div class="streak-day empty" title="Day 6">S</div>
+              <div class="streak-day empty" title="Day 7">S</div>
+            </div>
+            <p class="progress-hint">Come back daily to build streaks!</p>
+          </div>
+
+          <div class="progress-card glass-card">
+            <div class="progress-header">
+              <span class="progress-label">Study Time</span>
+              <span class="progress-value">0 hours</span>
+            </div>
+            <div class="study-time-visual">
+              <div class="time-icon">⏱️</div>
+              <div class="time-target">Goal: 30 min/day</div>
+            </div>
+            <p class="progress-hint">Every minute counts!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Available Certification Paths -->
+      <section class="section-container fade-in">
+        <h2 class="section-title">
+          <span>Available Certification Paths</span>
+          <span class="text-muted" style="font-size: var(--font-sm); font-weight: var(--weight-normal);">Choose your journey</span>
+        </h2>
+
+        <div class="path-grid">
+          <!-- Java Path - Beginner Friendly -->
+          <div class="certification-path-card glass-card featured">
+            <div class="path-header">
+              <div class="provider-badge java">
+                <span class="provider-icon">☕</span>
+                <span class="provider-name">Java</span>
+              </div>
+              <div class="difficulty-badge beginner">Beginner</div>
+            </div>
+
+            <h3 class="path-title">Oracle Certified Associate Java SE 21</h3>
+            <p class="path-description">Perfect for beginners. Master Java fundamentals and object-oriented programming.</p>
+
+            <div class="path-stats">
+              <div class="path-stat">
+                <span class="stat-icon">⏱️</span>
+                <span class="stat-text">34.5 hours</span>
+              </div>
+              <div class="path-stat">
+                <span class="stat-icon">👥</span>
+                <span class="stat-text">438 enrolled</span>
+              </div>
+            </div>
+
+            <div class="path-topics">
+              <span class="topic-tag">Variables</span>
+              <span class="topic-tag">OOP</span>
+              <span class="topic-tag">APIs</span>
+              <span class="topic-tag">+12 more</span>
+            </div>
+
+            <button class="btn-enroll cta">
+              <span>Start Learning</span>
+              <span>→</span>
+            </button>
+
+            <div class="featured-banner">
+              <span>⭐ Recommended for you</span>
+            </div>
+          </div>
+
+          <!-- AWS Cloud Practitioner -->
+          <div class="certification-path-card glass-card">
+            <div class="path-header">
+              <div class="provider-badge aws">
+                <span class="provider-icon">☁️</span>
+                <span class="provider-name">AWS</span>
+              </div>
+              <div class="difficulty-badge beginner">Beginner</div>
+            </div>
+
+            <h3 class="path-title">AWS Certified Cloud Practitioner</h3>
+            <p class="path-description">Foundation-level understanding of AWS Cloud concepts, services, and terminology.</p>
+
+            <div class="path-stats">
+              <div class="path-stat">
+                <span class="stat-icon">⏱️</span>
+                <span class="stat-text">18.5 hours</span>
+              </div>
+              <div class="path-stat">
+                <span class="stat-icon">👥</span>
+                <span class="stat-text">892 enrolled</span>
+              </div>
+            </div>
+
+            <div class="path-topics">
+              <span class="topic-tag">Cloud</span>
+              <span class="topic-tag">EC2</span>
+              <span class="topic-tag">S3</span>
+              <span class="topic-tag">+8 more</span>
+            </div>
+
+            <button class="btn-enroll btn-secondary">
+              <span>Enroll</span>
+            </button>
+          </div>
+
+          <!-- Oracle Java Developer -->
+          <div class="certification-path-card glass-card">
+            <div class="path-header">
+              <div class="provider-badge oracle">
+                <span class="provider-icon">🔴</span>
+                <span class="provider-name">Oracle</span>
+              </div>
+              <div class="difficulty-badge intermediate">Intermediate</div>
+            </div>
+
+            <h3 class="path-title">Oracle Certified Professional Java SE 21</h3>
+            <p class="path-description">Advanced Java programming skills including concurrency, streams, and modules.</p>
+
+            <div class="path-stats">
+              <div class="path-stat">
+                <span class="stat-icon">⏱️</span>
+                <span class="stat-text">52 hours</span>
+              </div>
+              <div class="path-stat">
+                <span class="stat-icon">👥</span>
+                <span class="stat-text">267 enrolled</span>
+              </div>
+            </div>
+
+            <div class="path-topics">
+              <span class="topic-tag">Concurrency</span>
+              <span class="topic-tag">Streams</span>
+              <span class="topic-tag">Lambda</span>
+              <span class="topic-tag">+15 more</span>
+            </div>
+
+            <button class="btn-enroll btn-secondary">
+              <span>Enroll</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Achievement System -->
+      <section class="section-container fade-in">
+        <h2 class="section-title">
+          <span>Achievements</span>
+          <span class="badge">0/24 Unlocked</span>
+        </h2>
+
+        <div class="achievement-grid">
+          <div class="achievement-card locked">
+            <div class="achievement-icon">🎯</div>
+            <div class="achievement-name">First Steps</div>
+            <div class="achievement-desc">Complete your first lesson</div>
+            <div class="achievement-progress">
+              <div class="progress">
+                <div class="progress-bar" style="width: 0%"></div>
+              </div>
+              <span class="progress-text">0/1</span>
+            </div>
+          </div>
+
+          <div class="achievement-card locked">
+            <div class="achievement-icon">⚡</div>
+            <div class="achievement-name">Quick Learner</div>
+            <div class="achievement-desc">Earn 100 XP</div>
+            <div class="achievement-progress">
+              <div class="progress">
+                <div class="progress-bar" style="width: 0%"></div>
+              </div>
+              <span class="progress-text">0/100</span>
+            </div>
+          </div>
+
+          <div class="achievement-card locked">
+            <div class="achievement-icon">🔥</div>
+            <div class="achievement-name">Dedicated</div>
+            <div class="achievement-desc">Maintain a 7-day streak</div>
+            <div class="achievement-progress">
+              <div class="progress">
+                <div class="progress-bar" style="width: 0%"></div>
+              </div>
+              <span class="progress-text">0/7</span>
+            </div>
+          </div>
+
+          <div class="achievement-card locked">
+            <div class="achievement-icon">🌅</div>
+            <div class="achievement-name">Early Bird</div>
+            <div class="achievement-desc">Study before 9 AM</div>
+            <div class="achievement-progress">
+              <span class="progress-text">Locked</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="empty-state-inline">
+          <p>🏆 Unlock achievements by completing lessons and maintaining streaks!</p>
+        </div>
+      </section>
+
+      <!-- AI Study Assistant -->
+      <section class="section-container fade-in">
+        <h2 class="section-title">
+          <span class="ai-badge">🤖 AI Study Assistant</span>
+          <span class="badge accent">Powered by Claude AI</span>
+        </h2>
+
+        <div class="ai-assistant-card glass-card">
+          <div class="ai-header">
+            <div class="ai-avatar">🤖</div>
+            <div class="ai-intro">
+              <h3 class="ai-title">Get Personalized Help</h3>
+              <p class="ai-subtitle">Ask me anything about your studies - I'm here to help!</p>
+            </div>
+          </div>
+
+          <div class="ai-prompt-suggestions">
+            <button class="prompt-suggestion">
+              <span class="prompt-icon">💡</span>
+              <span class="prompt-text">Explain Java concurrency in simple terms</span>
+            </button>
+            <button class="prompt-suggestion">
+              <span class="prompt-icon">📅</span>
+              <span class="prompt-text">Create a study plan for AWS certification</span>
+            </button>
+            <button class="prompt-suggestion">
+              <span class="prompt-icon">❓</span>
+              <span class="prompt-text">Quiz me on what I just learned</span>
+            </button>
+          </div>
+
+          <div class="ai-input-container">
+            <input
+              type="text"
+              class="ai-input"
+              placeholder="Ask your AI study assistant..."
+              aria-label="AI study assistant input"
+            >
+            <button class="ai-send-btn" aria-label="Send message">
+              <span>→</span>
+            </button>
+          </div>
+
+          <div class="ai-features-list">
+            <div class="ai-feature">
+              <span>✨</span>
+              <span>Instant answers to your questions</span>
+            </div>
+            <div class="ai-feature">
+              <span>📚</span>
+              <span>Topic explanations and examples</span>
+            </div>
+            <div class="ai-feature">
+              <span>🎯</span>
+              <span>Practice questions on demand</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Leaderboard Preview -->
+      <section class="section-container fade-in">
+        <h2 class="section-title">
+          <span>Leaderboard</span>
+          <span class="badge">Bronze League</span>
+        </h2>
+
+        <div class="leaderboard-card glass-card">
+          <div class="leaderboard-header">
+            <h3 class="leaderboard-title">Top Learners This Week</h3>
+            <a href="#" class="view-full-link">View Full →</a>
+          </div>
+
+          <div class="leaderboard-list">
+            <div class="leaderboard-item">
+              <div class="rank rank-1">1</div>
+              <div class="user-avatar">J</div>
+              <div class="user-info">
+                <div class="user-name">Jordan K.</div>
+                <div class="user-stats">Level 12 • 🔥 45 day streak</div>
+              </div>
+              <div class="user-xp">4,230 XP</div>
+            </div>
+
+            <div class="leaderboard-item">
+              <div class="rank rank-2">2</div>
+              <div class="user-avatar">S</div>
+              <div class="user-info">
+                <div class="user-name">Sarah M.</div>
+                <div class="user-stats">Level 10 • 🔥 32 day streak</div>
+              </div>
+              <div class="user-xp">3,840 XP</div>
+            </div>
+
+            <div class="leaderboard-item">
+              <div class="rank rank-3">3</div>
+              <div class="user-avatar">M</div>
+              <div class="user-info">
+                <div class="user-name">Mike P.</div>
+                <div class="user-stats">Level 9 • 🔥 28 day streak</div>
+              </div>
+              <div class="user-xp">3,560 XP</div>
+            </div>
+
+            <div class="leaderboard-item">
+              <div class="rank">4</div>
+              <div class="user-avatar">E</div>
+              <div class="user-info">
+                <div class="user-name">Emma L.</div>
+                <div class="user-stats">Level 8 • 🔥 21 day streak</div>
+              </div>
+              <div class="user-xp">2,980 XP</div>
+            </div>
+
+            <div class="leaderboard-item">
+              <div class="rank">5</div>
+              <div class="user-avatar">D</div>
+              <div class="user-info">
+                <div class="user-name">David R.</div>
+                <div class="user-stats">Level 7 • 🔥 18 day streak</div>
+              </div>
+              <div class="user-xp">2,750 XP</div>
+            </div>
+          </div>
+
+          <div class="user-position">
+            <div class="position-icon">📊</div>
+            <div class="position-text">
+              <strong>Not ranked yet</strong>
+              <span>Start learning to compete!</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Premium Feature - AI Analytics -->
+      <section class="section-container fade-in">
+        <h2 class="section-title">
+          <span class="ai-badge">🤖 AI-Powered Analytics</span>
+          <span class="badge premium">👑 Premium</span>
+        </h2>
+
+        <div class="premium-card glass-card locked">
+          <div class="premium-overlay">
+            <div class="premium-lock">🔒</div>
+            <h3 class="premium-title">Unlock AI-Powered Insights</h3>
+            <p class="premium-subtitle">Track your learning patterns and get personalized recommendations</p>
+            <button class="cta">
+              <span>Upgrade to Premium</span>
+              <span>👑</span>
+            </button>
+          </div>
+
+          <div class="premium-preview blurred">
+            <div class="chart-placeholder">
+              <div class="chart-bar" style="height: 60%"></div>
+              <div class="chart-bar" style="height: 80%"></div>
+              <div class="chart-bar" style="height: 45%"></div>
+              <div class="chart-bar" style="height: 90%"></div>
+              <div class="chart-bar" style="height: 70%"></div>
+              <div class="chart-bar" style="height: 95%"></div>
+              <div class="chart-bar" style="height: 55%"></div>
+            </div>
+            <div class="analytics-insights">
+              <div class="insight-item">
+                <span class="insight-label">Best study time:</span>
+                <span class="insight-value">Morning (9-11 AM)</span>
+              </div>
+              <div class="insight-item">
+                <span class="insight-label">Weak areas:</span>
+                <span class="insight-value">Concurrency, Streams</span>
+              </div>
+              <div class="insight-item">
+                <span class="insight-label">Predicted score:</span>
+                <span class="insight-value">85% pass rate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Community Section -->
+      <section class="section-container fade-in">
+        <h2 class="section-title">
+          <span>Community Discussions</span>
+        </h2>
+
+        <div class="community-card glass-card">
+          <div class="community-topics">
+            <a href="#" class="topic-item">
+              <div class="topic-icon">💬</div>
+              <div class="topic-content">
+                <h4 class="topic-title">Best Java 21 learning resources?</h4>
+                <div class="topic-meta">
+                  <span>42 replies</span>
+                  <span>•</span>
+                  <span>2 hours ago</span>
+                </div>
+              </div>
+              <div class="topic-arrow">→</div>
+            </a>
+
+            <a href="#" class="topic-item">
+              <div class="topic-icon">🎯</div>
+              <div class="topic-content">
+                <h4 class="topic-title">Tips for AWS certification exam</h4>
+                <div class="topic-meta">
+                  <span>38 replies</span>
+                  <span>•</span>
+                  <span>5 hours ago</span>
+                </div>
+              </div>
+              <div class="topic-arrow">→</div>
+            </a>
+
+            <a href="#" class="topic-item">
+              <div class="topic-icon">🚀</div>
+              <div class="topic-content">
+                <h4 class="topic-title">Just passed my Oracle cert! Here's what helped</h4>
+                <div class="topic-meta">
+                  <span>124 replies</span>
+                  <span>•</span>
+                  <span>1 day ago</span>
+                </div>
+              </div>
+              <div class="topic-arrow">→</div>
+            </a>
+          </div>
+
+          <button class="btn-secondary join-community-btn">
+            <span>Join the Conversation</span>
+            <span>→</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Onboarding Checklist -->
+      <section class="section-container fade-in">
+        <h2 class="section-title">
+          <span>Getting Started</span>
+          <span class="text-muted" style="font-size: var(--font-sm); font-weight: var(--weight-normal);">Complete these steps to maximize your learning</span>
+        </h2>
+
+        <div class="checklist-card glass-card">
+          <div class="checklist-item incomplete">
+            <input type="checkbox" id="check-1" class="checklist-checkbox">
+            <label for="check-1" class="checklist-label">
+              <span class="checklist-icon">📚</span>
+              <span class="checklist-text">Choose your first certification path</span>
+            </label>
+          </div>
+
+          <div class="checklist-item incomplete">
+            <input type="checkbox" id="check-2" class="checklist-checkbox">
+            <label for="check-2" class="checklist-label">
+              <span class="checklist-icon">✏️</span>
+              <span class="checklist-text">Complete your first lesson</span>
+            </label>
+          </div>
+
+          <div class="checklist-item incomplete">
+            <input type="checkbox" id="check-3" class="checklist-checkbox">
+            <label for="check-3" class="checklist-label">
+              <span class="checklist-icon">❓</span>
+              <span class="checklist-text">Answer 5 practice questions</span>
+            </label>
+          </div>
+
+          <div class="checklist-item incomplete">
+            <input type="checkbox" id="check-4" class="checklist-checkbox">
+            <label for="check-4" class="checklist-label">
+              <span class="checklist-icon">🎯</span>
+              <span class="checklist-text">Set your daily study goal</span>
+            </label>
+          </div>
+
+          <div class="checklist-item incomplete">
+            <input type="checkbox" id="check-5" class="checklist-checkbox">
+            <label for="check-5" class="checklist-label">
+              <span class="checklist-icon">👥</span>
+              <span class="checklist-text">Invite a study partner</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pro Tip Card -->
+      <div class="pro-tip-card fade-in">
+        <button class="pro-tip-close" aria-label="Dismiss tip">×</button>
+        <div class="pro-tip-icon">💡</div>
+        <div class="pro-tip-content">
+          <h3 class="pro-tip-title">Pro tip</h3>
+          <p class="pro-tip-text">Complete daily challenges to boost your XP and build your streak! Consistency is key to mastering certifications.</p>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav" role="navigation" aria-label="Main navigation">
+      <a href="/pages/dashboard.html" class="nav-item active" aria-current="page">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">📝</span>
+        <span class="nav-label">Exams</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">👥</span>
+        <span class="nav-label">Community</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">⚙️</span>
+        <span class="nav-label">Settings</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../scripts/dashboard.js"></script>
+</body>
+</html>
