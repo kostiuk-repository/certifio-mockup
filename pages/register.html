@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create your CERTIFIO account - Start learning today">
+  <meta name="theme-color" content="#0B0B15">
+
+  <!-- Title -->
+  <title>Create Account - CERTIFIO</title>
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Google Fonts - Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/animations.css">
+  <link rel="stylesheet" href="../styles/auth.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎯</text></svg>">
+</head>
+
+<body>
+  <div class="auth-page">
+    <!-- Back to home link -->
+    <a href="../index.html" class="back-link" aria-label="Back to home">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      <span>Back to home</span>
+    </a>
+
+    <!-- Authentication Card -->
+    <div class="auth-card fade-in">
+      <!-- Logo -->
+      <a href="../index.html" class="auth-logo" aria-label="CERTIFIO Home">
+        <div class="logo-icon" aria-hidden="true">C</div>
+        <div class="logo-text">CERTIFIO</div>
+      </a>
+
+      <!-- Page Title -->
+      <div class="auth-header">
+        <h1>Create your account</h1>
+        <p class="auth-subtitle">Join 12,500+ learners mastering Java certifications</p>
+      </div>
+
+      <!-- OAuth Section -->
+      <div class="oauth-section">
+        <button class="oauth-btn github-btn" aria-label="Sign up with GitHub">
+          <svg class="oauth-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          <span>Sign up with GitHub</span>
+        </button>
+
+        <button class="oauth-btn google-btn" aria-label="Sign up with Google">
+          <svg class="oauth-icon" width="20" height="20" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+          <span>Sign up with Google</span>
+        </button>
+      </div>
+
+      <!-- Divider -->
+      <div class="divider">
+        <span>or</span>
+      </div>
+
+      <!-- Registration Form -->
+      <form class="auth-form" aria-label="Create account form">
+        <div class="form-group">
+          <label for="fullname" class="form-label">Full name</label>
+          <input
+            type="text"
+            id="fullname"
+            name="fullname"
+            class="form-input"
+            placeholder="John Doe"
+            autocomplete="name"
+            aria-required="true"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-input"
+            placeholder="you@example.com"
+            autocomplete="email"
+            aria-required="true"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <div class="password-input-wrapper">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-input"
+              placeholder="Create a strong password"
+              autocomplete="new-password"
+              aria-required="true"
+            >
+            <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+              <svg class="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+          <!-- Password strength indicator (static visual) -->
+          <div class="password-strength">
+            <div class="strength-bar">
+              <div class="strength-fill strength-medium"></div>
+            </div>
+            <span class="strength-text">Medium strength</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirm-password" class="form-label">Confirm password</label>
+          <div class="password-input-wrapper">
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              class="form-input"
+              placeholder="Re-enter your password"
+              autocomplete="new-password"
+              aria-required="true"
+            >
+            <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+              <svg class="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label terms-checkbox">
+            <input type="checkbox" name="terms" id="terms" required>
+            <span class="checkbox-custom"></span>
+            <span class="terms-text">
+              I agree to the <a href="#terms" class="inline-link">Terms of Service</a> and <a href="#privacy" class="inline-link">Privacy Policy</a>
+            </span>
+          </label>
+        </div>
+
+        <button type="submit" class="auth-submit-btn">
+          <span>Create Account</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </form>
+
+      <!-- Sign in link -->
+      <div class="auth-footer">
+        <span class="footer-text">Already have an account?</span>
+        <a href="login.html" class="auth-link">Sign in</a>
+      </div>
+
+      <!-- Benefits list -->
+      <div class="benefits-list">
+        <div class="benefit-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <span>Free forever for core features</span>
+        </div>
+        <div class="benefit-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <span>Join 12,500+ active learners</span>
+        </div>
+        <div class="benefit-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <span>Cancel anytime, no commitments</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ambient background effects -->
+    <div class="auth-bg-glow auth-glow-1" aria-hidden="true"></div>
+    <div class="auth-bg-glow auth-glow-2" aria-hidden="true"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../scripts/auth.js"></script>
+</body>
+</html>
